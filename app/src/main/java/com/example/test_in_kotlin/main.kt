@@ -52,4 +52,12 @@ fun main() {
     }
 
     println(car::class.simpleName ?: "Error") // retorna o nome da class
+
+    // herança
+
+    val gato = Gato("Gato")
+    val animal = Animal("Vaca")
+
+    println("O ${gato.nome} faz ${gato.som()}")
+    println("O ${animal.nome} faz ${animal.som()}")
 }
