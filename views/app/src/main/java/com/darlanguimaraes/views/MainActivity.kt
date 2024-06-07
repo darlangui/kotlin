@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -58,7 +60,7 @@ fun App() {
             )
     ) {
         AsyncImage(
-            model = "https://picsum.photos/1920/1080",
+            model = "",
             contentDescription = "Imagem de capa",
             Modifier
                 .height(100.dp)
@@ -71,17 +73,21 @@ fun App() {
             placeholder = ColorPainter(Color.Gray),
             contentScale = ContentScale.Crop
         )
-        Text(
-            text = "Yuri", Modifier.padding(
-                start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp
-            ), fontSize = 24.sp
-        )
-        Text(
-            text = "coda foo", Modifier.padding(
-                start = 16.dp, top = 16.dp, bottom = 16.dp
-            ), fontSize = 14.sp
-        )
-        Row {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(
+                text = "Yuri", fontSize = 24.sp
+            )
+            Text(
+                text = "coda foo", fontSize = 14.sp
+            )
+        }
+        Row(
+            Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Icon(
                 Icons.Outlined.FavoriteBorder, contentDescription = "icone de favorito"
             )
