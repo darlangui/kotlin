@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.darlanguimaraes.login.ui.theme.LoginTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,10 +50,36 @@ fun AuthScreen() {
     var pass by remember {
         mutableStateOf("")
     }
-    Column {
-        TextField(value = user, onValueChange = { user = it })
-        TextField(value = pass, onValueChange = { pass = it }, visualTransformation = PasswordVisualTransformation())
-        Button(onClick = { /*TODO*/ }) {
+    Column (
+        Modifier.statusBarsPadding()
+    ){
+        TextField(
+            value = user,
+            onValueChange = { user = it },
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth(),
+            label = {
+                Text(text = "Username")
+            }
+        )
+        TextField(
+            value = pass,
+            onValueChange = { pass = it },
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth(),
+            label = {
+                Text(text = "Password")
+            }
+        )
+        Button(
+            onClick = { /*TODO*/ },
+            Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
+        ) {
             Text(text = "Entrar")
         }
     }
