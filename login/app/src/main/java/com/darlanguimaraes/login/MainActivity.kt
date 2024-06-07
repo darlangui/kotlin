@@ -1,6 +1,9 @@
 package com.darlanguimaraes.login
 
+import android.content.ContentValues.TAG
+import android.graphics.drawable.Icon
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -9,7 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Password
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AuthScreen()
+                    AuthScreen(onEnterClick = { Log.i("MainActivity", "onCreate: $it")})
                 }
             }
         }
@@ -43,16 +50,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AuthScreen() {
+fun AuthScreen(onEnterClick:(User) -> Unit) {
     var user by remember {
         mutableStateOf("")
     }
     var pass by remember {
         mutableStateOf("")
     }
-    Column (
+    Column(
         Modifier.statusBarsPadding()
-    ){
+    ) {
         TextField(
             value = user,
             onValueChange = { user = it },
@@ -61,6 +68,12 @@ fun AuthScreen() {
                 .fillMaxWidth(),
             label = {
                 Text(text = "Username")
+            },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = "pessoa que representa o usuario"
+                )
             }
         )
         TextField(
@@ -72,10 +85,19 @@ fun AuthScreen() {
                 .fillMaxWidth(),
             label = {
                 Text(text = "Password")
+            },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Password,
+                    contentDescription = "pessoa que representa o usuario"
+                )
             }
         )
         Button(
-            onClick = { /*TODO*/ },
+            onClick =
+            {
+                onEnterClick(User(user, pass))
+            },
             Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
@@ -90,7 +112,7 @@ fun AuthScreen() {
 private fun AuthScreenPreview() {
     LoginTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            AuthScreen()
+            AuthScreen(onEnterClick = {})
         }
     }
 }
