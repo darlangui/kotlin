@@ -6,12 +6,15 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -42,7 +45,9 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    App()
+                    Box {
+                        App()
+                    }
                 }
             }
         }
@@ -53,6 +58,7 @@ class MainActivity : ComponentActivity() {
 fun App() {
     Column(
         Modifier
+            .statusBarsPadding()
             .padding(8.dp)
             .fillMaxWidth()
             .border(
@@ -60,7 +66,7 @@ fun App() {
             )
     ) {
         AsyncImage(
-            model = "",
+            "https://picsum.photos/1920/1080?grayscale",
             contentDescription = "Imagem de capa",
             Modifier
                 .height(100.dp)
@@ -78,7 +84,7 @@ fun App() {
                 text = "Yuri", fontSize = 24.sp
             )
             Text(
-                text = "coda foo", fontSize = 14.sp
+                text = "coda fofo", fontSize = 14.sp
             )
         }
         Row(
