@@ -1,10 +1,8 @@
 package com.darlanguimaraes.pages.ui.view
 
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,13 +13,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.filled.Password
+import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,14 +28,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import com.darlanguimaraes.pages.R
+import com.darlanguimaraes.pages.ui.components.CustomButtom
 import com.darlanguimaraes.pages.ui.components.CustomTextField
-import com.darlanguimaraes.pages.ui.modifiers.NoUnderLinePasswordVisualTransformation
+import com.darlanguimaraes.pages.ui.modifiers.DarkPreview
+import com.darlanguimaraes.pages.ui.modifiers.LightPreview
 import com.darlanguimaraes.pages.ui.theme.PagesTheme
 
 @Composable
@@ -89,51 +89,36 @@ fun LoginScreen(modifier: Modifier = Modifier) {
                     value = password,
                     onValueChange = { password = it },
                     label = "Password",
-                    leadingIcon = Icons.Default.Email,
+                    leadingIcon = Icons.Default.Password,
+                    trailingIcon = Icons.Default.RemoveRedEye,
+                    isPassword = true,
                     modifier = Modifier.padding(start = 28.dp, end = 28.dp),
-                    visualTransformation = NoUnderLinePasswordVisualTransformation()
                 )
-                Row (
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 32.dp, end = 32.dp)
                 ) {
                     Spacer(modifier = Modifier.weight(1f))
-                    TextButton(
-                        onClick = { /*TODO*/ },
-                        interactionSource = remember { MutableInteractionSource() },
-                    ) {
-                        Text(
-                            text = "Need Help?",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.secondary
-                        )
-                    }
+                    ClickableText(
+                        text = AnnotatedString("Need Help?"),
+                        onClick = { },
+                        style = MaterialTheme.typography.bodyMedium
+                            .copy(color = MaterialTheme.colorScheme.secondary),
+                        modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
+                    )
                 }
-                Button(
-                    onClick = { /*TODO*/ },
+                CustomButtom(
+                    text = "PROCESS",
+                    onClickAction = { /*TODO*/ },
                     modifier = Modifier
                         .padding(end = 28.dp, start = 28.dp, top = 12.dp)
-                        .fillMaxWidth()
                         .height(48.dp)
-                        .shadow(elevation = 16.dp, shape = RoundedCornerShape(24.dp))
-                ) {
-                    Text(text = "PROCESS")
-                }
+                )
             }
         }
     }
 }
-
-@Preview(
-    name = "Light Mode", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO
-)
-annotation class LightPreview
-
-@Preview(
-    name = "Dark Mode", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES
-)
-annotation class DarkPreview
 
 @DarkPreview
 @Composable
