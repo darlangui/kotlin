@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.darlanguimaraes.pages.ui.theme.PagesTheme
 import com.darlanguimaraes.pages.ui.view.LoginScreen
+import com.darlanguimaraes.pages.ui.view.RegisterScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    LoginScreen()
+                    RegisterScreen()
                 }
             }
         }
